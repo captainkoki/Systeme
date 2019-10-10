@@ -67,13 +67,13 @@ void Objet::calculNormalface()
 
 		point3 ui(pV.x / norme, pV.y / norme, pV.z / norme);
 
-		std::cout << ui << "\n";
+		//std::cout << ui << "\n";
 
 		somparfaces[lifaces[i].s0].push_back(ui);
 		somparfaces[lifaces[i].s1].push_back(ui);
 		somparfaces[lifaces[i].s2].push_back(ui);
 
-		std::cout << i << "\n";
+		//std::cout << i << "\n";
 		//NormFace.push_back(nface);
 	}
 }
@@ -85,26 +85,40 @@ void Objet::calculNormalsommet()
 	for (unsigned long i = 0; i < somparfaces.size(); ++i)
 	{
 
-		std::cout << i << "\n";
+		//std::cout << i << "\n";
 		for (unsigned long j = 0; j < somparfaces[i].size(); ++j)
 		{
-			X = X * somparfaces[i][j].x;
-			Y = Y * somparfaces[i][j].y;
-			Z = Z * somparfaces[i][j].z;
+			X = X + somparfaces[i][j].x;
+			Y = Y + somparfaces[i][j].y;
+			Z = Z + somparfaces[i][j].z;
 		}
 		X = X / somparfaces[i].size();
 		Y = Y / somparfaces[i].size();
 		Z = Z / somparfaces[i].size();
 		NormSommet.push_back(point3(X, Y, Z));
-		std::cout << "[" << X << " ; " << Y << " ; " << Z << "]\n";
+		//std::cout << "[" << X << " ; " << Y << " ; " << Z << "]\n";
+	}
+}
+
+void Objet::infoNormF()
+{
+	std::cout << "\n NORMAL AUX FACES\n";
+	for (unsigned long i = 0; i < somparfaces.size(); ++i)
+	{
+		for (unsigned long j = 0; j < somparfaces[i].size(); ++j)
+		{
+			std::cout << i << " " << j << "[" << somparfaces[i][j].x << " ; " << somparfaces[i][j].y << " ; " << somparfaces[i][j].z << "]\n";
+		}
+		std::cout << i <<"////////////////////// \n";
 	}
 }
 
 void Objet::infoNormS()
 {
-	std::cout << "\n NORMAL AU SOMMETS\n";
-	for (unsigned int i = 0; i < NormSommet.size(); ++i)
+	std::cout << "\n NORMAL AUX SOMMETS\n";
+	for (unsigned long i = 0; i < NormSommet.size(); ++i)
 	{
+
 		std::cout << i << " : [" << NormSommet[i].x << " ; " << NormSommet[i].y << " ; " << NormSommet[i].z << "]\n";
 	}
 }

@@ -39,6 +39,7 @@ class Objet {
 	void calculNormalface();
 	void calculNormalsommet();
 
+	void infoNormF();
 	void infoNormS();
 	////////////////////////////////////
 
